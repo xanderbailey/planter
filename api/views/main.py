@@ -41,7 +41,8 @@ def get_sensors():
 # POST request for /sensors
 @main.route("/sensors", methods=["POST"])
 def create_sensor():
-    data = request.get_json()
+    data = request.get_json(force=True)
+    print(data)
 
     logger.info("Data recieved: %s", data)
     if "name" not in data:
