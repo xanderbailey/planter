@@ -41,8 +41,7 @@ def get_sensors():
 # POST request for /sensors
 @main.route("/sensors", methods=["POST"])
 def create_sensor():
-    data = request.get_json(force=True)
-    print(data)
+    data = request.form
 
     logger.info("Data recieved: %s", data)
     if "name" not in data:
@@ -67,7 +66,7 @@ def create_sensor():
 
 @main.route("/readings", methods=["GET"])
 def get_readings():
-    data = request.get_json()
+    data = request.form
 
     from_time_str = data.get("from","2020-01-01 00:00:00")
     from_time = datetime.strptime(from_time_str, '%Y-%m-%d %H:%M:%S')
@@ -84,7 +83,7 @@ def get_readings():
 
 @main.route("/readings", methods=["POST"])
 def create_reading():
-    data = request.get_json()
+    data = request.form
 
     if "temperature" not in data:
         msg = "No temperature provided for sensor."
