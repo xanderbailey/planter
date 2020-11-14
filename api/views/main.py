@@ -42,7 +42,7 @@ def get_sensors():
 @main.route("/sensors", methods=["POST"])
 def create_sensor():
     data = request.form
-
+    logger.info(str(data.keys()))
     logger.info("Data recieved: %s", data)
     if "name" not in data:
         msg = "No name provided for sensor."
