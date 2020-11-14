@@ -12,9 +12,9 @@ class Reading(Mixin, db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
     sensor_id = db.Column(UUID(as_uuid=True), db.ForeignKey("sensors.id", ondelete="SET NULL"), nullable=False)
     timestamp = db.Column(db.DateTime, server_default=db.func.now())
-    temperature = db.Colum(db.Float)
-    humidity = db.Colum(db.Float)
-    pressure = db.Colum(db.Float)
+    temperature = db.Column(db.Float)
+    humidity = db.Column(db.Float)
+    pressure = db.Column(db.Float)
 
 
 
