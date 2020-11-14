@@ -9,7 +9,12 @@ main = Blueprint("main", __name__)  # initialize blueprint
 
 @main.before_request
 def check_key():
-    token = request.headers.get('ApiKey')
+    if request.headers.get('ApiKey') is None:
+        msg = "Bad auth."
+        logger.info(msg)
+        return create_response(status=401, message=msg)
+    
+    token = request.headers['ApiKey']
     if token != os.getenv("APIKEY"):
         msg = "Bad auth."
         logger.info(msg)
