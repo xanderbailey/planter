@@ -103,7 +103,7 @@ def create_reading():
     #check if sensor is in sensor table
     sensor = Sensor.query.filter(Sensor.id == data["sensor_id"])
     if len(sensor) == 0:
-        msg = f"Sensor with sensor_id: {data["sensor_id"]} not found."
+        msg = "Sensor with sensor_id: {sensor_id} not found.".format(**data)
         logger.info(msg)
         return create_response(status=422, message=msg)
 
