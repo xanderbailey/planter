@@ -61,7 +61,7 @@ def create_sensor():
     db.session.commit()
     return create_response(
         message=f"Successfully created sensor {new_sensor.name} with id: {new_sensor.id}",
-        data={"id":new_sensor._id, "name": new_sensor.name, "location": new_sensor.location}
+        data={"id":new_sensor.id, "name": new_sensor.name, "location": new_sensor.location}
     )
 
 @main.route("/readings", methods=["GET"])
