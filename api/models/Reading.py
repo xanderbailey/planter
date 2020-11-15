@@ -18,7 +18,8 @@ class Reading(Mixin, db.Model):
 
 
 
-    def __init__(self, temperature, humidity, pressure):
+    def __init__(self, sensor_id, temperature, humidity, pressure):
+        self.sensor_id = sensor_id
         self.temperature = temperature
         self.humidity = humidity
         self.pressure = pressure
