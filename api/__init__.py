@@ -87,3 +87,28 @@ def create_app(test_config=None):
     app.register_error_handler(Exception, all_exception_handler)
 
     return app
+
+class Client():
+    def __init__(self, apikey:str, root_url:str):
+        self.apikey = apikey
+        self.header = {"ApiKey":self.apikey}
+        self.url = root_url
+
+    def add_sensor(self, name:str, location:str):
+        data = {"name":name, "location":location}
+        response = requests.post(self.url + "/sensors", data=data, headers=self.header)
+        return response.json()
+
+    def add_reading(self, sensor_id:str, temperature:str, humidity:str, pressure:str):
+        data = {"sensor_id":sensor_id, "temperature":temperature, "humidity":humidity, "pressure":pressure}
+        response = requests.post(self.url + "/readings", data=data, headers=self.header)
+        return response.json()
+    
+    def get_sensors(self):
+        response = requests.get(self.url + "/sensors", headers=self.header)
+        return response.json()
+    
+    def get_readings(self, from_date:str=None, to_date:str=None):
+        data = {"from":from_date, "to":to_date}
+        response = requests.get(self.url + "/readings", data=data, headers=self.header)
+        return response.json()
