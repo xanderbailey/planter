@@ -29,9 +29,7 @@ class DevelopmentConfig(Config):
     cmd in the setup instructions. You can change this to environment variable as well. 
     """
 
-    url = (
-        "postgresql://testusr:password@127.0.0.1:5432/testdb"
-    )  # set the URI to call get_pg_url() once you have `creds.ini` setup
+    url = "postgresql://testusr:password@127.0.0.1:5432/testdb"  # set the URI to call get_pg_url() once you have `creds.ini` setup
     SQLALCHEMY_DATABASE_URI = url
     DEBUG = True
 
@@ -64,9 +62,7 @@ class DockerDevConfig(Config):
     credentials. 
     """
 
-    SQLALCHEMY_DATABASE_URI = (
-        "postgresql://testusr:password@postgres/testdb"
-    )  # hard coded URL, assuming you are using the docker-compose setup
+    SQLALCHEMY_DATABASE_URI = "postgresql://testusr:password@postgres/testdb"  # hard coded URL, assuming you are using the docker-compose setup
     DEBUG = True
 
 
